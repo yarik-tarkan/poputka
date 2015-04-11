@@ -73,6 +73,7 @@ function init(){
 		    if (startPlacemark && !finishPlacemark) {
 
 		        finishPlacemark = createFinishPlacemark(coords);
+		        document.getElementById('destinationCoord').value = coords;
 		    	YMap.geoObjects.add(finishPlacemark);
 
 		    	createPolyline(startPlacemark, finishPlacemark);
@@ -90,6 +91,7 @@ function init(){
 
 				// Если ни одна метка не создана –  создаем начальную
 		        startPlacemark = createStartPlacemark(coords);
+		        document.getElementById('departureCoord').value = coords;
 		        YMap.geoObjects.add(startPlacemark);
 
 		        // Слушаем событие окончания перетаскивания на метке.
@@ -102,6 +104,7 @@ function init(){
 		    	//alert("ERROR: Нарушение порядка меток");
 		    	//Добавлена только конечная метка - создаем начальную
 		    	startPlacemark = createStartPlacemark(coords);
+		    	document.getElementById('departureCoord').value = coords;
 		    	YMap.geoObjects.add(startPlacemark);
 
 		    	createPolyline(startPlacemark, finishPlacemark);
@@ -149,6 +152,7 @@ function init(){
     setAsStartPlacemark = function(){
     	if (searchPlacemark) {
     		var searchPlacemarkCoords = searchPlacemark.geometry.getCoordinates();
+    		document.getElementById('departureCoord').value = searchPlacemarkCoords;
     		YMap.geoObjects.remove(searchPlacemark);
     		removeStartPlacemark();
     		startPlacemark = createStartPlacemark(searchPlacemarkCoords);
@@ -165,6 +169,7 @@ function init(){
     setAsFinishPlacemark = function(){
     	if (searchPlacemark) {
     		var searchPlacemarkCoords = searchPlacemark.geometry.getCoordinates();
+    		document.getElementById('destinationCoord').value = searchPlacemarkCoords;
     		YMap.geoObjects.remove(searchPlacemark);
     		removeFinishPlacemark();
     		finishPlacemark = createFinishPlacemark(searchPlacemarkCoords);
